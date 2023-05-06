@@ -79,3 +79,14 @@ h1 {
     position: relative;
     top: 20px;
 }
+
+#forecast {
+    border-top: 3px solid transparent;
+    border-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0) 100%);
+    border-image-slice: 1;
+    border-radius: 20px;
+    background-color: #A8D8FF;
+    border-radius: 20px;
+    position: relative;
+    bottom: 8px;
+}
