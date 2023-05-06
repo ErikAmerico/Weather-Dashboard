@@ -1,5 +1,6 @@
-#fiveday {
-    height: 10%;
+.flex-container {
+    display: flex;
+    align-items: center;
 }
 
 header {
@@ -12,4 +13,68 @@ h1 {
     font-size: 50px;
     color: aliceblue;
     text-shadow: 2px 2px 4px rgb(17, 17, 17);
+}
+
+#currentCity {
+    border-radius: 20px;
+}
+
+#currCity {
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    text-shadow: 2px 2px 4px rgb(209, 208, 208);
+    font-size: 40px;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0) 100%);
+    border-image-slice: 1;
+}
+
+#dayTitle {
+    border-top: 3px solid transparent;
+    border-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 50%, rgba(255, 255, 255, 0) 100%);
+    border-image-slice: 1;
+    border-radius: 20px;
+    height: 10%;
+}
+
+.containerCurrent {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.containerCurrent>div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#currentStatus,
+#wind,
+#temp,
+#humidity {
+    text-shadow: 2px 2px 4px rgb(209, 208, 208);
+}
+
+#tempLogo {
+    width: 83px;
+    height: 66px;
+}
+
+#humidLogo,
+#windLogo {
+    border: 2px black solid;
+    border-radius: 100%;
+    width: 71px;
+    height: 69px;
+}
+
+#weatherLogo {
+    width: 125px;
+    height: 125px;
+    position: relative;
+    top: 20px;
 }

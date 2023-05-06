@@ -49,15 +49,36 @@
 
             <div class="col-9" id="right">
                 <div id="currentCity" style="background-color: blue;">
-                    <h2 id="currCity">City/Town</h2>
-                    <img id="weatherLogo" src="" alt="">
-                    <h4 id="currentStatus">Currently</h4>
-                    <h4 id="temp">Current Temperature</h4>
-                    <h4 id="wind">Wind Speed</h4>
-                    <h4 id="humidity">Humidity Level</h4>
+
+                    <h2 id="currCity">--------</h2>
+
+                    <div class="containerCurrent">
+                        <div>
+                            <img id="weatherLogo" src="Assets/mist,smoke,haze,dust,fog,sand,ash,squall,tornado.png"
+                                alt="">
+                            <h4 id="currentStatus">------</h4>
+                        </div>
+
+                        <div>
+                            <img id="windLogo" src="Assets/windLogo.png" alt="">
+                            <h4 id="wind">------</h4>
+                        </div>
+
+                        <div>
+                            <img id="tempLogo" src="Assets/TempLogo.png" alt="">
+                            <h4 id="temp">------</h4>
+                        </div>
+
+                        <div>
+                            <img id="humidLogo" src="Assets/humidityLogo.png" alt="">
+                            <h4 id="humidity">------</h4>
+                        </div>
+                    </div>
                 </div>
 
-                <h3 style="background-color: teal;" id="fiveday" class="d-flex justify-content-center">5-Day Forecast:
+                <h3 id="dayTitle" style="background-color: teal;" id="fiveday" class="d-flex justify-content-center">
+                    5-Day NoonTime
+                    Forecast:
                 </h3>
 
                 <div class="row d-flex justify-content-center">
