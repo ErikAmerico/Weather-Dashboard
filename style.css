@@ -1,3 +1,15 @@
 #fiveday {
     height: 10%;
 }
+
+header {
+    background-image: url(Assets/fantastic-blue-sky_1203-1929.avif);
+    background-size: cover;
+}
+
+h1 {
+    font-style: italic;
+    font-size: 50px;
+    color: aliceblue;
+    text-shadow: 2px 2px 4px rgb(17, 17, 17);
+}
