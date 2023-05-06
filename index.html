@@ -22,17 +22,25 @@
         <div class="row">
 
             <div class="col-3 " id="left">
-                <div id="citySearch" style="background-color: gray; padding-bottom: 15px">
+                <div id="citySearch">
                     <div class="container">
-                        <h2 class="d-flex justify-content-center">Search for a City:</h2>
+                        <h2 class="d-flex justify-content-center">Enter a city name:</h2>
                         <div class="d-flex flex-column align-items-center">
 
-                            <input type="text" placeholder="City?" id="inputCity" class="w-75">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Search Bar</span>
+                                </div>
+                                <input type="text" id="inputCity" class="form-control" aria-label="Default"
+                                    aria-describedby="inputGroup-sizing-default">
+                            </div>
+
+                            <!-- <input type="text" placeholder="City?" id="inputCity" class="w-75"> -->
                             <input type="text" placeholder="State?" id="inputState" class="w-75" hidden>
                             <input type="text" placeholder="Country?" id="inputCountry" class="w-75" hidden>
 
-                            <button type="submit" class="btn btn-info w-100" id="searchBtn"
-                                style="margin-top:5px">Search</button>
+                            <button type="submit" class="btn btn-info w-100" id="searchBtn" style="margin-top:5px">Get
+                                Weather</button>
                         </div>
                     </div>
                 </div>
