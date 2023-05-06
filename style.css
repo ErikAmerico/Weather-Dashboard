@@ -18,6 +18,7 @@ h1 {
 #currentCity {
     border-radius: 20px;
     background-color: blue;
+    box-shadow: inset -5px -5px 10px rgba(255, 255, 255, 0.5), inset 5px -5px 10px rgba(255, 255, 255, 0.5);
 }
 
 #currCity {
@@ -38,6 +39,7 @@ h1 {
     border-radius: 20px;
     height: 10%;
     text-shadow: 2px 2px 4px rgb(187, 187, 187);
+    box-shadow: inset -5px -5px 10px rgba(255, 255, 255, 0.5), inset 5px -5px 10px rgba(255, 255, 255, 0.5);
 }
 
 .containerCurrent {
