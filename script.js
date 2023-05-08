@@ -30,6 +30,51 @@ function getWeatherForecast(lat, lon) {
         })
 }
 
+function displayWeatherData(data) {
+    currentCity = document.getElementById('currCity')
+    currentTemp = document.getElementById('temp')
+    currentWind = document.getElementById('wind')
+    currentHumidity = document.getElementById('humidity')
+    currently = document.getElementById('currentStatus')
+    logo = document.getElementById('weatherLogo')
+    skyStatus = data.list[0].weather[0].main;
+
+    currentCity.textContent = "";
+    currentTemp.textContent = "";
+    currentWind.textContent = "";
+    currentHumidity.textContent = "";
+
+    //console.log(data)
+    currentCity.textContent = data.city.name;
+    currentTemp.textContent += "Temperature: " + Math.floor(data.list[0].main.temp) + "°F";
+    currentWind.textContent += "Wind Speed: " + Math.floor(data.list[0].wind.speed) + " MPH";
+    currentHumidity.textContent += "Humidity Level: " + Math.floor(data.list[0].main.humidity) + "%";
+
+    if (skyStatus === 'Rain') {
+        logo.src = "Assets/rain.png";
+        currently.textContent = 'Raining';
+    } else if (skyStatus === 'Clouds') {
+        logo.src = "Assets/clouds.png";
+        currently.textContent = 'Cloudy';
+    } else if (skyStatus === 'Drizzle') {
+        logo.src = "Assets/drizzle.png";
+        currently.textContent = 'Drizzling';
+    } else if (skyStatus === 'Snow') {
+        logo.src = "Assets/snow.png";
+        currently.textContent = 'Snowing';
+    } else if (skyStatus === 'Thunderstorm') {
+        logo.src = "Assets/thunderstorm.png";
+        currently.textContent = 'Stormy';
+    } else if (skyStatus === 'Clear') {
+        logo.src = "Assets/clearDay.png";
+        currently.textContent = 'Clear Skies';
+    } else {
+        logo.src = "Assets/mist,smoke,haze,dust,fog,sand,ash,squall,tornado.png";
+        currently.textContent = 'Air quality low';
+    }
+
+}
+
 function handleWeatherData() {
 
     const cityName = city.value;
@@ -38,5 +83,8 @@ function handleWeatherData() {
     getWeatherData(cityName, stateName,)
         .then(function ({ lat, lon }) {
             return getWeatherForecast(lat, lon);
+        })
+        .then(function (data) {
+            return displayWeatherData(data);
         })
 }
