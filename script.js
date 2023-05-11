@@ -142,6 +142,12 @@ function displayWeatherData(data) {
     }
 
     localStorage.setItem(data.city.name, JSON.stringify(data));
+
+    const historyList = document.querySelector('#history ul');
+    const button = document.createElement('button');
+    button.textContent = data.city.name;
+    button.setAttribute('class', "btn btn-primary w-100 my-1");
+    historyList.appendChild(button)
 }
 
 function handleWeatherData() {
