@@ -138,7 +138,7 @@ function displayWeatherData(data) {
         currently.textContent = 'Clear Skies';
     } else {
         logo.src = "Assets/mist,smoke,haze,dust,fog,sand,ash,squall,tornado.png";
-        currently.textContent = 'Air quality low';
+        currently.textContent = 'Hazardous Conditions';
     }
 
 }
