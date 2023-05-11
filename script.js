@@ -150,6 +150,59 @@ function displayWeatherData(data) {
     historyList.appendChild(button)
 }
 
+function displayWeatherDataButton(data) {
+    currentCity = document.getElementById('currCity')
+    currentTemp = document.getElementById('temp')
+    currentWind = document.getElementById('wind')
+    currentHumidity = document.getElementById('humidity')
+    currently = document.getElementById('currentStatus')
+    logo = document.getElementById('weatherLogo')
+    skyStatus = data.list[0].weather[0].main;
+
+    currentCity.textContent = "";
+    currentTemp.textContent = "";
+    currentWind.textContent = "";
+    currentHumidity.textContent = "";
+
+    //console.log(data)
+    currentCity.textContent = data.city.name;
+    currentTemp.textContent += "Temperature: " + Math.floor(data.list[0].main.temp) + "°F";
+    currentWind.textContent += "Wind Speed: " + Math.floor(data.list[0].wind.speed) + " MPH";
+    currentHumidity.textContent += "Humidity Level: " + Math.floor(data.list[0].main.humidity) + "%";
+
+    if (skyStatus === 'Rain') {
+        logo.src = "Assets/rain.png";
+        currently.textContent = 'Raining';
+    } else if (skyStatus === 'Clouds') {
+        logo.src = "Assets/clouds.png";
+        currently.textContent = 'Cloudy';
+    } else if (skyStatus === 'Drizzle') {
+        logo.src = "Assets/drizzle.png";
+        currently.textContent = 'Drizzling';
+    } else if (skyStatus === 'Snow') {
+        logo.src = "Assets/snow.png";
+        currently.textContent = 'Snowing';
+    } else if (skyStatus === 'Thunderstorm') {
+        logo.src = "Assets/thunderstorm.png";
+        currently.textContent = 'Stormy';
+    } else if (skyStatus === 'Clear') {
+        logo.src = "Assets/clearDay.png";
+        currently.textContent = 'Clear Skies';
+    } else {
+        logo.src = "Assets/mist,smoke,haze,dust,fog,sand,ash,squall,tornado.png";
+        currently.textContent = 'Hazardous Conditions';
+    }
+
+    localStorage.setItem(data.city.name, JSON.stringify(data));
+
+    const historyList = document.querySelector('#history ul');
+    const button = document.createElement('button');
+    button.textContent = data.city.name;
+    button.setAttribute('class', "btn btn-primary w-100 my-1");
+    button.setAttribute('hidden', "true")
+    historyList.appendChild(button)
+}
+
 window.addEventListener('load', function () {
     const historyList = document.querySelector('#history ul');
     const keys = Object.keys(localStorage);
@@ -161,6 +214,11 @@ window.addEventListener('load', function () {
         button.setAttribute('id', key);
         button.setAttribute('class', "btn btn-primary w-100 my-1");
         historyList.appendChild(button);
+        button.addEventListener('click', function () {
+            const savedData = JSON.parse(localStorage.getItem(key));
+            displayWeatherDataButton(savedData)
+            displayForecast(savedData)
+        });
     });
 });
 
