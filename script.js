@@ -29,6 +29,73 @@ function getWeatherForecast(lat, lon) {
             console.log(response)
             return response.json();
         })
+        .then(function (data) {
+            console.log(data)
+            displayForecast(data);
+            return data;
+        })
+}
+
+function displayForecast(data) {
+    let dates = [];
+    let skies = [];
+    let temps = [];
+    let winds = [];
+    let humids = [];
+    for (let i = 0; i < data.list.length; i++) {
+        //console.log(data.list[i]);
+        if (data.list[i].dt_txt.includes("12:00:00")) {
+            console.log('hello')
+            const date = data.list[i].dt_txt.substring(0, 10);
+            const formattedDate = dayjs(date).format('M-D-YY');
+            dates.push(formattedDate);
+            const sky = data.list[i].weather[0].main;
+            //console.log(sky)
+            skies.push(sky);
+            const temp = Math.floor(data.list[i].main.temp);
+            temps.push(temp);
+            const wind = Math.floor(data.list[i].wind.speed);
+            winds.push(wind);
+            const humidity = data.list[i].main.humidity;
+            humids.push(humidity);
+        }
+    }
+    for (let i = 0; i < 5; i++) {
+        const temperature = temps[i];
+        const elementId = `temp${i + 1}`;
+        const element = document.querySelector(`#${elementId}`);
+        element.innerHTML = "Temperature: " + `${temperature}°F`;
+    }
+    for (let i = 0; i < 5; i++) {
+        const date = dates[i];
+        const elementId = `date${i + 1}`;
+        const element = document.querySelector(`#${elementId}`);
+        element.innerHTML = `${date}`;
+    }
+    for (let i = 0; i < 5; i++) {
+        const wind = winds[i];
+        const elementId = `wind${i + 1}`;
+        const element = document.querySelector(`#${elementId}`);
+        element.innerHTML = "Breeze: " + `${wind}` + " MPH";
+    }
+    for (let i = 0; i < 5; i++) {
+        const humid = humids[i];
+        const elementId = `humidity${i + 1}`;
+        const element = document.querySelector(`#${elementId}`);
+        element.innerHTML = "Humidity: " + `${humid}` + "%";
+    }
+    for (let i = 0; i < 5; i++) {
+        const sky = skies[i];
+        const elementId = `weatherLogo${i + 1}`;
+        const element = document.querySelector(`#${elementId}`);
+        element.src = sky === 'Rain' ? 'Assets/rain.png'
+            : sky === 'Clouds' ? 'Assets/clouds.png'
+                : sky === 'Drizzle' ? 'Assets/drizzle.png'
+                    : sky === 'Snow' ? 'Assets/snow.png'
+                        : sky === 'Thunderstorm' ? 'Assets/thunderstorm.png'
+                            : sky === 'Clear' ? 'Assets/clearDay.png'
+                                : 'Assets/mist,smoke,haze,dust,fog,sand,ash,squall,tornado.png';
+    }
 }
 
 function displayWeatherData(data) {
