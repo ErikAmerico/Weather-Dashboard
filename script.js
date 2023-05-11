@@ -150,6 +150,20 @@ function displayWeatherData(data) {
     historyList.appendChild(button)
 }
 
+window.addEventListener('load', function () {
+    const historyList = document.querySelector('#history ul');
+    const keys = Object.keys(localStorage);
+    historyList.innerHTML = '';
+    keys.forEach(function (key) {
+        const value = localStorage.getItem(key);
+        const button = document.createElement('button');
+        button.textContent = key;
+        button.setAttribute('id', key);
+        button.setAttribute('class', "btn btn-primary w-100 my-1");
+        historyList.appendChild(button);
+    });
+});
+
 function handleWeatherData() {
 
     const cityName = city.value;
