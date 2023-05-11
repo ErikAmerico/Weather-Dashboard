@@ -18,12 +18,12 @@ function getWeatherData(cityName, stateName) { // countryName
             const lat = data.coord.lat;
             const lon = data.coord.lon;
             console.log(`The geographical coordinates of ${cityName}, ${stateName}, are: latitude ${lat}, longitude ${lon}`);
-            return { lat, lon, };
+            return { lat, lon, cityName, stateName };
         });
 }
 
 function getWeatherForecast(lat, lon) {
-    const cityUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+    const cityUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=cecc3bd04ab6746c6e6e7130bfc08b3a`;
     return fetch(cityUrl)
         .then(function (response) {
             console.log(response)
