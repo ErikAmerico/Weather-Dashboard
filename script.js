@@ -17,7 +17,6 @@ function getWeatherData(cityName, stateName) { // countryName
         .then(function (data) {
             const lat = data.coord.lat;
             const lon = data.coord.lon;
-            console.log(`The geographical coordinates of ${cityName}, ${stateName}, are: latitude ${lat}, longitude ${lon}`);
             return { lat, lon, cityName, stateName };
         });
 }
@@ -26,11 +25,9 @@ function getWeatherForecast(lat, lon) {
     const cityUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=cecc3bd04ab6746c6e6e7130bfc08b3a`;
     return fetch(cityUrl)
         .then(function (response) {
-            console.log(response)
             return response.json();
         })
         .then(function (data) {
-            console.log(data)
             displayForecast(data);
             return data;
         })
@@ -43,14 +40,11 @@ function displayForecast(data) {
     let winds = [];
     let humids = [];
     for (let i = 0; i < data.list.length; i++) {
-        //console.log(data.list[i]);
         if (data.list[i].dt_txt.includes("12:00:00")) {
-            console.log('hello')
             const date = data.list[i].dt_txt.substring(0, 10);
             const formattedDate = dayjs(date).format('M-D-YY');
             dates.push(formattedDate);
             const sky = data.list[i].weather[0].main;
-            //console.log(sky)
             skies.push(sky);
             const temp = Math.floor(data.list[i].main.temp);
             temps.push(temp);
@@ -112,7 +106,6 @@ function displayWeatherData(data) {
     currentWind.textContent = "";
     currentHumidity.textContent = "";
 
-    //console.log(data)
     currentCity.textContent = data.city.name;
     currentTemp.textContent += "Temperature: " + Math.floor(data.list[0].main.temp) + "°F";
     currentWind.textContent += "Wind Speed: " + Math.floor(data.list[0].wind.speed) + " MPH";
@@ -164,7 +157,6 @@ function displayWeatherDataButton(data) {
     currentWind.textContent = "";
     currentHumidity.textContent = "";
 
-    //console.log(data)
     currentCity.textContent = data.city.name;
     currentTemp.textContent += "Temperature: " + Math.floor(data.list[0].main.temp) + "°F";
     currentWind.textContent += "Wind Speed: " + Math.floor(data.list[0].wind.speed) + " MPH";
