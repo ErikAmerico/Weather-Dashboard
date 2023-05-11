@@ -141,6 +141,7 @@ function displayWeatherData(data) {
         currently.textContent = 'Hazardous Conditions';
     }
 
+    localStorage.setItem(data.city.name, JSON.stringify(data));
 }
 
 function handleWeatherData() {
