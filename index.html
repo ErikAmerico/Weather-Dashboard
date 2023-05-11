@@ -17,7 +17,6 @@
         <h1 class="text-center">Weather Dashboard</h1>
     </header>
 
-
     <div class="container-fluid">
         <div class="row">
 
@@ -32,12 +31,12 @@
                                     <span class="input-group-text" id="inputGroup-sizing-default">Search Bar</span>
                                 </div>
                                 <input type="text" id="inputCity" class="form-control" aria-label="Default"
-                                    aria-describedby="inputGroup-sizing-default">
+                                    aria-describedby="inputGroup-sizing-default" placeholder="City">
+                                <input type="text" id="inputState" class="form-control" aria-label="Default"
+                                    aria-describedby="inputGroup-sizing-default" placeholder="State" maxlength="2">
+                                <!-- <input type="text" id="inputCountry" class="form-control" aria-label="Default"
+                                 aria-describedby="inputGroup-sizing-default" placeholder="Country" maxlength="2"> -->
                             </div>
-
-                            <!-- <input type="text" placeholder="City?" id="inputCity" class="w-75"> -->
-                            <input type="text" placeholder="State?" id="inputState" class="w-75" hidden>
-                            <input type="text" placeholder="Country?" id="inputCountry" class="w-75" hidden>
 
                             <button type="submit" class="btn btn-info w-100" id="searchBtn" style="margin-top:5px">Get
                                 Weather</button>
