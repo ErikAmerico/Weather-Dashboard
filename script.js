@@ -1,3 +1,4 @@
+
 const apiKey = 'cecc3bd04ab6746c6e6e7130bfc08b3a'
 const searchBtn = document.getElementById('searchBtn');
 const city = document.getElementById('inputCity');
@@ -9,7 +10,7 @@ searchBtn.addEventListener('click', function () {
 })
 
 function getWeatherData(cityName, stateName) { // countryName
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${stateName},US&units=imperial&appid=cecc3bd04ab6746c6e6e7130bfc08b3a`; //${ countryName }
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "," + stateName + ',' + "us&units=imperial&appid=cecc3bd04ab6746c6e6e7130bfc08b3a"; //${ countryName }
     return fetch(apiUrl)
         .then(function (response) {
             return response.json();
@@ -22,7 +23,7 @@ function getWeatherData(cityName, stateName) { // countryName
 }
 
 function getWeatherForecast(lat, lon) {
-    const cityUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=cecc3bd04ab6746c6e6e7130bfc08b3a`;
+    const cityUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=cecc3bd04ab6746c6e6e7130bfc08b3a";
     return fetch(cityUrl)
         .then(function (response) {
             return response.json();
@@ -139,16 +140,30 @@ function displayWeatherData(data) {
     button.textContent = data.city.name;
     button.setAttribute('class', "btn btn-primary w-100 my-1");
 
-    const keys = Object.keys(localStorage);
-    if (keys.includes(button.textContent)) {
-        searchBtn.textContent = 'Check List Below';
-        searchBtn.classList.add('flash-red');
-        setTimeout(function () {
-            searchBtn.classList.remove('flash-red');
-            searchBtn.textContent = 'Get Weather';
-        }, 1500);
-    } else {
-        historyList.appendChild(button)
+    const localStorageValues = Object.values(localStorage).map(function (value) {
+        return JSON.parse(value);
+    });
+
+    const cityId = data.city.id.toString();
+    let matchFound = false;
+
+    for (let i = 0; i < localStorageValues.length; i++) {
+        const storage = localStorageValues[i];
+        storedIds = storage.city.id;
+        if (storedIds == cityId) {
+            matchFound = true;
+            searchBtn.textContent = 'Check List Below';
+            searchBtn.classList.add('flash-red');
+            setTimeout(function () {
+                searchBtn.classList.remove('flash-red');
+                searchBtn.textContent = 'Get Weather';
+            }, 1500);
+            break;
+        }
+    };
+
+    if (!matchFound) {
+        historyList.appendChild(button);
     }
 
     localStorage.setItem(data.city.name, JSON.stringify(data));
@@ -158,8 +173,7 @@ function displayWeatherData(data) {
         displayWeatherDataButton(savedData)
         displayForecast(savedData)
     });
-
-}
+};
 
 function displayWeatherDataButton(data) {
     currentCity = document.getElementById('currCity')
