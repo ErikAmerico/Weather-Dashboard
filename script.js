@@ -134,13 +134,31 @@ function displayWeatherData(data) {
         currently.textContent = 'Hazardous Conditions';
     }
 
-    localStorage.setItem(data.city.name, JSON.stringify(data));
-
     const historyList = document.querySelector('#history ul');
     const button = document.createElement('button');
     button.textContent = data.city.name;
     button.setAttribute('class', "btn btn-primary w-100 my-1");
-    historyList.appendChild(button)
+
+    const keys = Object.keys(localStorage);
+    if (keys.includes(button.textContent)) {
+        searchBtn.textContent = 'Check List Below';
+        searchBtn.classList.add('flash-red');
+        setTimeout(function () {
+            searchBtn.classList.remove('flash-red');
+            searchBtn.textContent = 'Get Weather';
+        }, 1500);
+    } else {
+        historyList.appendChild(button)
+    }
+
+    localStorage.setItem(data.city.name, JSON.stringify(data));
+
+    button.addEventListener('click', function () {
+        const savedData = JSON.parse(localStorage.getItem(data.city.name));
+        displayWeatherDataButton(savedData)
+        displayForecast(savedData)
+    });
+
 }
 
 function displayWeatherDataButton(data) {
@@ -184,15 +202,6 @@ function displayWeatherDataButton(data) {
         logo.src = "Assets/mist,smoke,haze,dust,fog,sand,ash,squall,tornado.png";
         currently.textContent = 'Hazardous Conditions';
     }
-
-    localStorage.setItem(data.city.name, JSON.stringify(data));
-
-    const historyList = document.querySelector('#history ul');
-    const button = document.createElement('button');
-    button.textContent = data.city.name;
-    button.setAttribute('class', "btn btn-primary w-100 my-1");
-    button.setAttribute('hidden', "true")
-    historyList.appendChild(button)
 }
 
 window.addEventListener('load', function () {

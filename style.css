@@ -102,3 +102,21 @@ h1 {
     position: relative;
     bottom: 8px;
 }
+
+@keyframes flash {
+    0% {
+        background-color: red;
+    }
+
+    50% {
+        background-color: white;
+    }
+
+    100% {
+        background-color: red;
+    }
+}
+
+.flash-red {
+    animation: flash .5s infinite;
+}
