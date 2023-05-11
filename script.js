@@ -2,13 +2,14 @@ const apiKey = 'cecc3bd04ab6746c6e6e7130bfc08b3a'
 const searchBtn = document.getElementById('searchBtn');
 const city = document.getElementById('inputCity');
 const state = document.getElementById('inputState');
+//const country = document.getElementById('inputCountry');
 
 searchBtn.addEventListener('click', function () {
     handleWeatherData()
 })
 
-function getWeatherData(cityName, stateName, countryName) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${stateName},${countryName}&appid=${apiKey}`;
+function getWeatherData(cityName, stateName) { // countryName
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName},${stateName},US&units=imperial&appid=cecc3bd04ab6746c6e6e7130bfc08b3a`; //${ countryName }
     return fetch(apiUrl)
         .then(function (response) {
             return response.json();
@@ -79,8 +80,9 @@ function handleWeatherData() {
 
     const cityName = city.value;
     const stateName = state.value;
+    //const countryName = country.value;
 
-    getWeatherData(cityName, stateName,)
+    getWeatherData(cityName, stateName,  /*countryName*/)
         .then(function ({ lat, lon }) {
             return getWeatherForecast(lat, lon);
         })
