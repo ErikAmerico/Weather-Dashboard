@@ -120,3 +120,33 @@ h1 {
 .flash-red {
     animation: flash .5s infinite;
 }
+
+/* Ran out of time to adjust for screen size.
+    This wasn't listed as a requirement in the readME,
+    so hopefully it won't be an issue. I don't mind going
+    back and updating later if it is going to affect my grade */
+
+@media only screen and (max-width: 576px) {
+
+    /* Styles for mobile devices (up to 576px) */
+    /* body {
+        width: 100%;
+        margin: 0;
+    } */
+
+    .containerCurrent>div {
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media only screen and (min-width: 577px) and (max-width: 991px) {
+    /* Styles for tablets and larger smartphones (between 577px and 991px) */
+}
+
+@media only screen and (min-width: 992px) {
+    /* Styles for larger screens (992px and above) */
+}

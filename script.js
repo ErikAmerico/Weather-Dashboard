@@ -164,9 +164,9 @@ function displayWeatherData(data) {
 
     if (!matchFound) {
         historyList.appendChild(button);
+        localStorage.setItem(data.city.name, JSON.stringify(data));
     }
 
-    localStorage.setItem(data.city.name, JSON.stringify(data));
 
     button.addEventListener('click', function () {
         const savedData = JSON.parse(localStorage.getItem(data.city.name));
