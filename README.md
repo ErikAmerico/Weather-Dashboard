@@ -18,4 +18,4 @@ Here is an example screen shot of the webpage:
 - Google
 
 #### Link to Portfolio website:
-- 
+- https://erikamerico.github.io/Weather-Dashboard/

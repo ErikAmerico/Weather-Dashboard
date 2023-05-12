@@ -3,10 +3,20 @@ const apiKey = 'cecc3bd04ab6746c6e6e7130bfc08b3a'
 const searchBtn = document.getElementById('searchBtn');
 const city = document.getElementById('inputCity');
 const state = document.getElementById('inputState');
+const entry = document.getElementById('enterNames')
 //const country = document.getElementById('inputCountry');
 
 searchBtn.addEventListener('click', function () {
-    handleWeatherData()
+    if (city.value == '' || state.value == '') {
+        entry.classList.add('flash-red');
+        setTimeout(function () {
+            entry.classList.remove('flash-red');
+        }, 1500);
+    } else {
+        handleWeatherData()
+        city.value = '';
+        state.value = '';
+    }
 })
 
 function getWeatherData(cityName, stateName) { // countryName
